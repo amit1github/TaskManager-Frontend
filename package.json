@@ -1,7 +1,8 @@
 {
-  "name": "client",
+  "name": "task-manager-frontend",
   "private": true,
   "version": "0.0.0",
+  "description": "This is the frontend part of the TaskManager project, a simple Todo application built with React + Vite and Bootstrap.",
   "type": "module",
   "scripts": {
     "dev": "vite",
