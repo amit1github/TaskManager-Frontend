@@ -16,9 +16,11 @@ const TodoApp = () => {
     fetchTasks();
   }, []);
 
+  let serverURL = import.meta.env.VITE_API_KEY;
+
   const fetchTasks = async () => {
     try {
-      const response = await axios.get("http://localhost:5000/task");
+      const response = await axios.get(`${serverURL}/task`);
       // console.log(response.data.response);
       setTodoList(response.data.response);
     } catch (error) {
@@ -70,7 +72,7 @@ const TodoApp = () => {
     // }
 
     axios
-      .post("http://localhost:5000/create-task", {
+      .post(`${serverURL}/create-task`, {
         task: newTask,
         status: newStatus,
         deadline: newDeadline,
@@ -109,7 +111,7 @@ const TodoApp = () => {
     // }
 
     axios
-      .put("http://localhost:5000/update-task/" + id, editedData)
+      .put(`${serverURL}/update-task/` + id, editedData)
       .then((result) => {
         console.log(result);
         setEditableId(null);
@@ -129,7 +131,7 @@ const TodoApp = () => {
 
     if (isConfirmed) {
       axios
-        .delete("http://localhost:5000/delete-task/" + id)
+        .delete(`${serverURL}/delete-task/` + id)
         .then((result) => {
           console.log(result);
           window.location.reload();
@@ -207,7 +209,7 @@ const TodoApp = () => {
                           </button>
                         ) : (
                           <button
-                            className="btn btn-primary btn-sm mx-1 mb-1"
+                            className="btn btn-primary btn-sm mx-1"
                             onClick={() => toggleEditable(data._id)}
                           >
                             Edit
